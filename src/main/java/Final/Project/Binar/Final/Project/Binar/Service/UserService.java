@@ -14,7 +14,8 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User submitUser(UserDto userDto) throws IOException {
+    public User submitUser(UserDto userDto) throws IOException
+    {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
