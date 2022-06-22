@@ -32,6 +32,12 @@ public class User {
     @Column(name = "notelepon")
     private long notelepon;
 
+    @Column(name = "provinsi")
+    private String provinsi;
+
+    @Column(name = "kota")
+    private String kota;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_role",

@@ -20,6 +20,8 @@ public class UserService {
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
+        user.setProvinsi(userDto.getProvinsi());
+        user.setKota(userDto.getKota());
         user.setAlamat(userDto.getAlamat());
         user.setNotelepon(userDto.getNotelepon());
         user.setImg(userDto.getImg().getBytes());
@@ -44,6 +46,8 @@ public class UserService {
        user.setEmail(userDto.getEmail());
        user.setUsername(userDto.getUsername());
        user.setPassword(userDto.getPassword());
+       user.setProvinsi(userDto.getProvinsi());
+       user.setKota(userDto.getKota());
        user.setAlamat(userDto.getAlamat());
        user.setNotelepon(userDto.getNotelepon());
        user.setImg(userDto.getImg().getBytes());
