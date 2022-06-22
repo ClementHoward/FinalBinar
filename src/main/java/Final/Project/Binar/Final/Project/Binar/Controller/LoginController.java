@@ -33,9 +33,9 @@ public class LoginController {
     @PostMapping("/registration-seller")
     public ResponseEntity<?> registrationSeller (@RequestBody UserDto user) {
         Map<String, String> map = new HashMap<>();
-        User userLogin = userLoginServiceImpl.findByEmail(user.getUsername());
+        User userLogin = userLoginServiceImpl.findByEmail(user.getEmail());
         if (userLogin != null) {
-            map.put(user.getUsername(), "email already exist");
+            map.put(user.getEmail(), "email already exist");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
         }else {
             userLoginServiceImpl.saveSeller(user);
