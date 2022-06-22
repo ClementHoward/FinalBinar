@@ -19,7 +19,6 @@ public class LoginController {
     UserLoginServiceImpl userLoginServiceImpl;
 
     @PostMapping("/registration")
-//    public ResponseEntity<?> registration (@RequestBody User user) {
     public ResponseEntity<?> registration (@RequestBody UserDto user) { //new
         Map<String, String> map = new HashMap<>();
         User userLogin = userLoginServiceImpl.findByEmail(user.getUsername());
