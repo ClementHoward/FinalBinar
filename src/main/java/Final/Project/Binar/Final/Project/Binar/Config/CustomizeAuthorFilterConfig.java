@@ -5,7 +5,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.xml.internal.security.algorithms.Algorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,10 +24,9 @@ import static com.google.common.net.HttpHeaders.AUTHORIZATION;
 import static java.util.Arrays.stream;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.security.config.Elements.JWT;
 
-public class CustomizeAuthorFilterConfig
-{
+
+public class CustomizeAuthorFilterConfig extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         if (request.getServletPath().equalsIgnoreCase("/login")){
@@ -66,4 +64,6 @@ public class CustomizeAuthorFilterConfig
             }
         }
     }
+
 }
+

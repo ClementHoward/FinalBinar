@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import java.util.List;
 
 @Getter
@@ -23,5 +19,6 @@ public class UserDto
     private long notelepon;
     private List<Roles> roles;
     private MultipartFile img;
+    private int roleId;
 
 }

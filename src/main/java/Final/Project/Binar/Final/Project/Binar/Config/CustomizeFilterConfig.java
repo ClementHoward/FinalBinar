@@ -3,7 +3,6 @@ package Final.Project.Binar.Final.Project.Binar.Config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.org.apache.xml.internal.security.algorithms.Algorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-public class CustomizeFilterConfig
+public class CustomizeFilterConfig extends UsernamePasswordAuthenticationFilter
 {
     private AuthenticationManager authenticationManager;
 
@@ -51,7 +50,7 @@ public class CustomizeFilterConfig
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
-        Algorithm algorithm = Algorithm.HMAC512("Second".getBytes());
+        Algorithm algorithm = Algorithm.HMAC512("Sneakers".getBytes());
         String accessToken = JWT.create().withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
                 .withIssuer(request.getRequestURL().toString())
