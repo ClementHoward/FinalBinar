@@ -97,7 +97,6 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 
     public Optional<User> display_by_id(Long user_id)
     {
-
         return userRepository.findById(user_id);
     }
 
@@ -108,8 +107,6 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         User saveUser = new User();
         saveUser.setUsername(userLogin.getUsername());
         saveUser.setEmail(userLogin.getEmail());
-        saveUser.setAlamat(userLogin.getAlamat());
-        saveUser.setNotelepon(userLogin.getNotelepon());
         List<Roles> getRoleById = roleRepository.findByRolesId(2);
         saveUser.setRoles(getRoleById);
         saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
