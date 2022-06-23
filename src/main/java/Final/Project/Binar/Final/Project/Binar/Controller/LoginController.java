@@ -32,7 +32,7 @@ public class LoginController
         {
             userLoginServiceImpl.saveUser(user);
         }
-        return new ResponseEntity<>("user telah berhasil", HttpStatus.CREATED);
+        return new ResponseEntity<>("user telah masuk kedalam", HttpStatus.CREATED);
     }
 
     @PostMapping("/registration-seller")
