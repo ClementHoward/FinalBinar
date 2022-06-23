@@ -42,6 +42,16 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     }
 
     @Override
+    public User saveUser(UserDto user) {
+        return null;
+    }
+
+    @Override
+    public User saveSeller(UserDto user) {
+        return null;
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException
     {
         User user = userRepository.findByEmail(email);
@@ -59,58 +69,57 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), simpleGrantedAuthorities);
     }
 
-    @Override
-    public User saveUser(UserDto userLogin)
-    {
-        User saveUser = new User();
-        saveUser.setUsername(userLogin.getUsername());
-        saveUser.setEmail(userLogin.getEmail());
-        List<Roles> getRoleById = roleRepository.findByRolesId(1);
-        saveUser.setRoles(getRoleById);
-        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-        return userRepository.save(saveUser);
-    }
-
-
-    public List<User> update_user(long userId, UserDto userDto, MultipartFile file)
-    {
-        try {
-            User user = userRepository.findById(userId);
-            if (user != null)
-            {
-                user.setUsername(userDto.getUsername());
-                user.setEmail(userDto.getEmail());
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-                user.setAlamat(userDto.getAlamat());
-                user.setNotelepon(userDto.getNotelepon());
-                user.setImg(file.getBytes());
-                User userupdate = userRepository.save(user);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("user not found");
-        }
-        return null;
-    }
-
-    public Optional<User> display_by_id(Long user_id)
-    {
-        return userRepository.findById(user_id);
-    }
-
-
-    @Override
-    public User saveSeller(UserDto userLogin)
-    {
-        User saveUser = new User();
-        saveUser.setUsername(userLogin.getUsername());
-        saveUser.setEmail(userLogin.getEmail());
-        List<Roles> getRoleById = roleRepository.findByRolesId(2);
-        saveUser.setRoles(getRoleById);
-        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-        return userRepository.save(saveUser);
-    }
+////    @Override
+////    public User saveUser(UserDto userLogin)
+////    {
+////        User saveUser = new User();
+////        saveUser.setUsername(userLogin.getUsername());
+////        saveUser.setEmail(userLogin.getEmail());
+////        List<Roles> getRoleById = roleRepository.findByRolesId(1);
+////        saveUser.setRoles(getRoleById);
+////        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
+////        return userRepository.save(saveUser);
+////    }
+//
+//
+//    public List<User> update_user(long userId, UserDto userDto, MultipartFile file)
+//    {
+//        try {
+//            User user = userRepository.findById(userId);
+//            if (user != null)
+//            {
+//                user.setUsername(userDto.getUsername());
+//                user.setEmail(userDto.getEmail());
+//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//                user.setAlamat(userDto.getAlamat());
+//                user.setNotelepon(userDto.getNotelepon());
+//                user.setImg(file.getBytes());
+//                User userupdate = userRepository.save(user);
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//            System.out.println("user not found");
+//        }
+//        return null;
+//    }
+//
+//    public Optional<User> display_by_id(Long user_id)
+//    {
+//        return userRepository.findById(user_id);
+//    }
+//
+//
+//    @Override
+//    public User saveSeller(UserDto userLogin)
+//    {
+//        User saveUser = new User();
+//        saveUser.setUsername(userLogin.getUsername());
+//        saveUser.setEmail(userLogin.getEmail());
+//        List<Roles> getRoleById = roleRepository.findByRolesId(2);
+//        saveUser.setRoles(getRoleById);
+//        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
+//        return userRepository.save(saveUser);
+//    }
 }
-
