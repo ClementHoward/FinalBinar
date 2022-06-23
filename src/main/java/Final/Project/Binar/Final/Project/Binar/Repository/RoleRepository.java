@@ -9,7 +9,8 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface RoleRepository extends JpaRepository<Roles, Integer> {
+public interface RoleRepository extends JpaRepository<Roles, Integer>
+{
     List<Roles> findByRolesId(int roleId);
 }
 

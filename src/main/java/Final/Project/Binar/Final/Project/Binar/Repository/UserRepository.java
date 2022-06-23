@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long>
+{
   List<User> findAll ();
   User findById(long userId);
   User findByEmail(String email);

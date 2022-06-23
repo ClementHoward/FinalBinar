@@ -25,7 +25,8 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserLoginServiceImpl implements UserLoginService, UserDetailsService {
+public class UserLoginServiceImpl implements UserLoginService, UserDetailsService
+{
 
     private final UserRepository userRepository;
     @Autowired
@@ -35,17 +36,21 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     //create role Repo dengan method abstract findByIdRole
 
     @Override
-    public User findByEmail(String email) {
-
+    public User findByEmail(String email)
+    {
         return  userRepository.findByEmail(email);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException
+    {
         User user = userRepository.findByEmail(email);
-        if (user == null) {
+        if (user == null)
+        {
             logger.error("user not found");
-        } else {
+        }
+        else
+        {
             logger.info(email + "user found");
         }
         Collection<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
@@ -55,7 +60,8 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     }
 
     @Override
-    public User saveUser(UserDto userLogin) {
+    public User saveUser(UserDto userLogin)
+    {
         User saveUser = new User();
         saveUser.setUsername(userLogin.getUsername());
         saveUser.setEmail(userLogin.getEmail());
@@ -66,10 +72,12 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     }
 
 
-    public List<User> update_user(long userId, UserDto userDto, MultipartFile file) {
+    public List<User> update_user(long userId, UserDto userDto, MultipartFile file)
+    {
         try {
             User user = userRepository.findById(userId);
-            if (user != null){
+            if (user != null)
+            {
                 user.setUsername(userDto.getUsername());
                 user.setEmail(userDto.getEmail());
                 user.setPassword(passwordEncoder.encode(userDto.getPassword()));
@@ -78,7 +86,9 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
                 user.setImg(file.getBytes());
                 User userupdate = userRepository.save(user);
             }
-        } catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             System.out.println("user not found");
         }
@@ -93,7 +103,8 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 
 
     @Override
-    public User saveSeller(UserDto userLogin) {
+    public User saveSeller(UserDto userLogin)
+    {
         User saveUser = new User();
         saveUser.setUsername(userLogin.getUsername());
         saveUser.setEmail(userLogin.getEmail());

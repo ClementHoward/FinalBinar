@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class LoginController {
+public class LoginController
+{
     @Autowired
     UserLoginServiceImpl userLoginServiceImpl;
 
@@ -22,29 +23,38 @@ public class LoginController {
     public ResponseEntity<?> registration (@RequestBody UserDto user) { //new
         Map<String, String> map = new HashMap<>();
         User userLogin = userLoginServiceImpl.findByEmail(user.getEmail());
-        if (userLogin != null) {
+        if (userLogin != null)
+        {
             map.put(user.getEmail(), "email already exist");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-        }else {
+        }
+        else
+        {
             userLoginServiceImpl.saveUser(user);
         }
         return  new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @PostMapping("/registration-seller")
-    public ResponseEntity<?> registrationSeller (@RequestBody UserDto user) {
+    public ResponseEntity<?> registrationSeller (@RequestBody UserDto user)
+    {
         Map<String, String> map = new HashMap<>();
         User userLogin = userLoginServiceImpl.findByEmail(user.getEmail());
-        if (userLogin != null) {
+        if (userLogin != null)
+        {
             map.put(user.getEmail(), "email already exist");
             return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-        }else {
+        }
+        else
+        {
             userLoginServiceImpl.saveSeller(user);
         }
         return  new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login (@RequestBody User user){
+    public ResponseEntity<?> login (@RequestBody User user)
+    {
         User userLogin = userLoginServiceImpl.findByEmail(user.getEmail());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
