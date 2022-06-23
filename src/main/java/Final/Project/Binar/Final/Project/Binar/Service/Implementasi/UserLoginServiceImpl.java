@@ -43,12 +43,24 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 
     @Override
     public User saveUser(UserDto user) {
-        return null;
+        User saveUser = new User();
+        saveUser.setUsername(saveUser.getUsername());
+        saveUser.setEmail(saveUser.getEmail());
+        List<Roles> getRoleById = roleRepository.findByRolesId(1);
+        saveUser.setRoles(getRoleById);
+        saveUser.setPassword(passwordEncoder.encode(saveUser.getPassword()));
+        return userRepository.save(saveUser);
     }
 
     @Override
     public User saveSeller(UserDto user) {
-        return null;
+        User saveUser = new User();
+        saveUser.setUsername(saveUser.getUsername());
+        saveUser.setEmail(saveUser.getEmail());
+        List<Roles> getRoleById = roleRepository.findByRolesId(2);
+        saveUser.setRoles(getRoleById);
+        saveUser.setPassword(passwordEncoder.encode(saveUser.getPassword()));
+        return userRepository.save(saveUser);
     }
 
     @Override
