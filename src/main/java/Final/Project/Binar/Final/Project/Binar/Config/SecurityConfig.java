@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+// pancingan
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
