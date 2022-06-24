@@ -32,7 +32,7 @@ public class LoginController
         {
             userLoginServiceImpl.saveUser(user);
         }
-        return new ResponseEntity<>("registrasi berhasil", HttpStatus.CREATED);
+        return new ResponseEntity<>("registrasi buyer berhasil", HttpStatus.CREATED);
     }
 
     @PostMapping("/registration-seller")
@@ -49,7 +49,7 @@ public class LoginController
         {
             userLoginServiceImpl.saveSeller(user);
         }
-        return  new ResponseEntity<>(HttpStatus.CREATED);
+        return  new ResponseEntity<>("registrasi seller berhasil", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
