@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/registration","registration-seller", "swagger-ui.html/**" ,"/refresh-token").permitAll();
+        http.authorizeRequests().antMatchers("/registration","/registration-seller", "swagger-ui.html/**" ,"/refresh-token").permitAll();
         http.authorizeRequests().antMatchers( "/login/**").permitAll();
         http.authorizeRequests().antMatchers("/user/display-all").hasAnyAuthority("SELLER")
                 .and().authorizeRequests().antMatchers("/user/update-user/{userId}", "/user/display-all").hasAnyAuthority("BUYER");

@@ -9,7 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class FinalProjectBinarApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(FinalProjectBinarApplication.class, args);
 	}
 	@Bean
