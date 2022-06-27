@@ -28,6 +28,7 @@ import java.util.Optional;
 public class UserLoginServiceImpl implements UserLoginService, UserDetailsService
 {
 
+    @Autowired
     private final UserRepository userRepository;
     @Autowired
     private final RoleRepository roleRepository;
@@ -39,16 +40,6 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     public User findByEmail(String email)
     {
         return  userRepository.findByEmail(email);
-    }
-
-    @Override
-    public User saveUser(UserDto user) {
-        return null;
-    }
-
-    @Override
-    public User saveSeller(UserDto user) {
-        return null;
     }
 
     @Override
@@ -69,19 +60,18 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), simpleGrantedAuthorities);
     }
 
-////    @Override
-////    public User saveUser(UserDto userLogin)
-////    {
-////        User saveUser = new User();
-////        saveUser.setUsername(userLogin.getUsername());
-////        saveUser.setEmail(userLogin.getEmail());
-////        List<Roles> getRoleById = roleRepository.findByRolesId(1);
-////        saveUser.setRoles(getRoleById);
-////        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-////        return userRepository.save(saveUser);
-////    }
-//
-//
+    public User saveUser(UserDto userLogin)
+    {
+        User saveUser = new User();
+        saveUser.setUsername(userLogin.getUsername());
+        saveUser.setEmail(userLogin.getEmail());
+        List<Roles> getRoleById = roleRepository.findByRolesId(1);
+        saveUser.setRoles(getRoleById);
+        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
+        return userRepository.save(saveUser);
+    }
+
+
 //    public List<User> update_user(long userId, UserDto userDto, MultipartFile file)
 //    {
 //        try {
@@ -111,17 +101,17 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 //    }
 //
 //
-//    @Override
-//    public User saveSeller(UserDto userLogin)
-//    {
-//        User saveUser = new User();
-//        saveUser.setUsername(userLogin.getUsername());
-//        saveUser.setEmail(userLogin.getEmail());
-//        List<Roles> getRoleById = roleRepository.findByRolesId(2);
-//        saveUser.setRoles(getRoleById);
-//        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-//        return userRepository.save(saveUser);
-//    }
+    @Override
+    public User saveSeller(UserDto userLogin)
+    {
+        User saveUser = new User();
+        saveUser.setUsername(userLogin.getUsername());
+        saveUser.setEmail(userLogin.getEmail());
+        List<Roles> getRoleById = roleRepository.findByRolesId(2);
+        saveUser.setRoles(getRoleById);
+        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
+        return userRepository.save(saveUser);
+    }
 
     public List<User> update_seller(long userId, UserDto userDto, MultipartFile file)
     {

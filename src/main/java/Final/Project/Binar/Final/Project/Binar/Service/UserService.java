@@ -3,23 +3,27 @@ package Final.Project.Binar.Final.Project.Binar.Service;
 import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.User;
 import Final.Project.Binar.Final.Project.Binar.Repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User submitUser(UserDto userDto) throws IOException
     {
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setProvinsi(userDto.getProvinsi());
         user.setKota(userDto.getKota());
         user.setAlamat(userDto.getAlamat());
@@ -45,7 +49,7 @@ public class UserService {
 
        user.setEmail(userDto.getEmail());
        user.setUsername(userDto.getUsername());
-       user.setPassword(userDto.getPassword());
+       user.setPassword(passwordEncoder.encode(userDto.getPassword()));
        user.setProvinsi(userDto.getProvinsi());
        user.setKota(userDto.getKota());
        user.setAlamat(userDto.getAlamat());
