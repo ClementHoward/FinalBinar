@@ -72,9 +72,52 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
     }
 
 
-//    public List<User> update_user(long userId, UserDto userDto, MultipartFile file)
+
+    public List<User> update_user(long userId, UserDto userDto)
+    {
+        try {
+            User user = userRepository.findById(userId);
+            if (user != null)
+            {
+                user.setUsername(userDto.getUsername());
+                user.setEmail(userDto.getEmail());
+                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+                user.setAlamat(userDto.getAlamat());
+                user.setNotelepon(userDto.getNotelepon());
+                user.setImg(userDto.getImg().getBytes());
+                User userupdate = userRepository.save(user);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("user not found");
+        }
+        return null;
+    }
+
+    public Optional<User> display_by_id(Long user_id)
+    {
+        return userRepository.findById(user_id);
+    }
+
+
+    @Override
+    public User saveSeller(UserDto userLogin)
+    {
+        User saveUser = new User();
+        saveUser.setUsername(userLogin.getUsername());
+        saveUser.setEmail(userLogin.getEmail());
+        List<Roles> getRoleById = roleRepository.findByRolesId(2);
+        saveUser.setRoles(getRoleById);
+        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
+        return userRepository.save(saveUser);
+    }
+
+//    public List<User> update_seller(long userId, UserDto userDto, MultipartFile file)
 //    {
-//        try {
+//        try
+//        {
 //            User user = userRepository.findById(userId);
 //            if (user != null)
 //            {
@@ -94,45 +137,4 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 //        }
 //        return null;
 //    }
-//
-//    public Optional<User> display_by_id(Long user_id)
-//    {
-//        return userRepository.findById(user_id);
-//    }
-//
-//
-    @Override
-    public User saveSeller(UserDto userLogin)
-    {
-        User saveUser = new User();
-        saveUser.setUsername(userLogin.getUsername());
-        saveUser.setEmail(userLogin.getEmail());
-        List<Roles> getRoleById = roleRepository.findByRolesId(2);
-        saveUser.setRoles(getRoleById);
-        saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-        return userRepository.save(saveUser);
-    }
-
-    public List<User> update_seller(long userId, UserDto userDto, MultipartFile file)
-    {
-        try {
-            User user = userRepository.findById(userId);
-            if (user != null)
-            {
-                user.setUsername(userDto.getUsername());
-                user.setEmail(userDto.getEmail());
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-                user.setAlamat(userDto.getAlamat());
-                user.setNotelepon(userDto.getNotelepon());
-                user.setImg(file.getBytes());
-                User userupdate = userRepository.save(user);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("user not found");
-        }
-        return null;
-    }
 }

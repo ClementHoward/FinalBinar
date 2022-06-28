@@ -6,10 +6,10 @@ import Final.Project.Binar.Final.Project.Binar.Service.Implementasi.UserLoginSer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +18,7 @@ public class LoginController
 {
     @Autowired
     UserLoginServiceImpl userLoginServiceImpl;
+    private org.springframework.web.multipart.MultipartFile MultipartFile;
 
     @PostMapping("/registration")
     public ResponseEntity<?> registration (@RequestBody UserDto user) { //new
@@ -59,5 +60,11 @@ public class LoginController
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<?> login (@PathVariable long userId, UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
+    {
+        userLoginServiceImpl.update_user(userId, userDto);
+        return new ResponseEntity<>("data user telah berhasil di-update",HttpStatus.OK);
+    }
 }
 

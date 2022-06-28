@@ -20,9 +20,9 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("submit")
-    public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException {
+    public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException
+    {
         productDto.setImg(file);
-
-        return new ResponseEntity<>( HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

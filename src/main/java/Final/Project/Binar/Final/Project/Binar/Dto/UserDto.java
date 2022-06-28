@@ -22,5 +22,4 @@ public class UserDto
     private List<Roles> roles;
     private MultipartFile img;
     private int roleId;
-
 }
