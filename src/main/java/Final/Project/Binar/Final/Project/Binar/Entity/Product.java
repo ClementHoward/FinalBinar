@@ -21,8 +21,6 @@ public class Product  {
     private BigDecimal price;
     @Column(name = "description")
     private String description;
-    @Column(name = "seller")
-    private String seller;
     @Column(name ="kota")
     private String kota;
     @Lob

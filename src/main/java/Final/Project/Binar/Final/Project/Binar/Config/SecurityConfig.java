@@ -3,6 +3,7 @@ package Final.Project.Binar.Final.Project.Binar.Config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -36,33 +37,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //uncomment if deploy to heroku
-    private CorsConfigurationSource configurationSource()
-    {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader(config.ALL);
-        config.addAllowedHeader(config.ALL);
-        config.addAllowedMethod(config.ALL);
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
+//    private CorsConfigurationSource configurationSource()
+//    {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.addAllowedOrigin("*");
+//        config.addAllowedHeader(config.ALL);
+//        config.addAllowedHeader(config.ALL);
+//        config.addAllowedMethod(config.ALL);
+//        source.registerCorsConfiguration("/**", config);
+//        return source;
+//    }
     //uncomment if deploy to heroku
 
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
         //uncomment if deploy to heroku
-        http.cors().configurationSource(configurationSource()).and()
-                .requiresChannel()
-                .anyRequest()
-                .requiresSecure();
+//        http.cors().configurationSource(configurationSource()).and()
+//                .requiresChannel()
+//                .anyRequest()
+//                .requiresSecure();
         //uncomment if deploy to heroku
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/registration","/registration-seller", "swagger-ui.html/**" ,"/refresh-token").permitAll();
         http.authorizeRequests().antMatchers( "/login/**").permitAll();
-        http.authorizeRequests().antMatchers("/user/display-all").hasAnyAuthority("SELLER")
+        http.authorizeRequests().antMatchers("/user/display-all", "/product/submit").hasAnyAuthority("SELLER")
                 .and().authorizeRequests().antMatchers("/user/update-user/{userId}", "/user/display-all").hasAnyAuthority("BUYER");
         http.authorizeRequests().anyRequest().authenticated();
 
@@ -75,5 +76,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**");
     }
-
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 }

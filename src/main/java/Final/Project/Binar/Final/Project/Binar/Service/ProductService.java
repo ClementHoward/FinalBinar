@@ -8,6 +8,8 @@ import Final.Project.Binar.Final.Project.Binar.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 @Service
 public class ProductService {
     @Autowired
@@ -15,16 +17,16 @@ public class ProductService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public Product submitProduck(ProductDto productDto) {
+    public Product submitProduck(ProductDto productDto) throws IOException {
     Product product = new Product();
     Category category = categoryRepository.findByIdCategory(productDto.getIdProduct());
     product.setCategory(category);
     product.setProductName(productDto.getProductName());
     product.setPrice(productDto.getPrice());
     product.setDescription(productDto.getDescription());
-    product.setSeller(productDto.getSeller());
+//    product.setSeller(productDto.getSeller());
     product.setKota(productDto.getKota());
-    product.setImg(productDto.getImg());
+    product.setImg(productDto.getImg().getBytes());
     return productRepository.save(product);
     }
 

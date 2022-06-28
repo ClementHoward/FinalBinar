@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -19,9 +20,9 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping("submit")
-    public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") byte[] file) throws IOException {
+    public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException {
         productDto.setImg(file);
-        productService.submitProduck(productDto);
-        return new ResponseEntity<>(productService.submitProduck(productDto), HttpStatus.CREATED);
+
+        return new ResponseEntity<>( HttpStatus.CREATED);
     }
 }

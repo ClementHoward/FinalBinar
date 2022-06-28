@@ -36,7 +36,7 @@ public class CustomizeAuthorFilterConfig extends OncePerRequestFilter {
             if (authHeader != null && authHeader.startsWith("Bearer ")){
                 try {
                     String token = authHeader.substring("Bearer ".length());
-                    Algorithm algorithm = Algorithm.HMAC512("Second".getBytes());
+                    Algorithm algorithm = Algorithm.HMAC512("Sneakers".getBytes());
                     JWTVerifier jwtVerifier = JWT.require(algorithm).build();
                     DecodedJWT decodedJWT = jwtVerifier.verify(token);
                     String usernameDecode = decodedJWT.getSubject();

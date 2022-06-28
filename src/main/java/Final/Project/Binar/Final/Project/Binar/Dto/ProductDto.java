@@ -3,6 +3,7 @@ package Final.Project.Binar.Final.Project.Binar.Dto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Category;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 @Setter
@@ -12,8 +13,8 @@ public class ProductDto {
     private String productName;
     private BigDecimal price;
     private String description;
-    private String seller;
+//    private String seller;
     private String kota;
-    private byte[] img;
+    private MultipartFile img;
     private Category category;
 }
