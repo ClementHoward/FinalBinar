@@ -21,7 +21,7 @@ public class ProductController {
     @PostMapping("submit")
     public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") byte[] file) throws IOException {
         productDto.setImg(file);
-//        productService.submitProduck(productDto);
+        productService.submitProduck(productDto);
         return new ResponseEntity<>(productService.submitProduck(productDto), HttpStatus.CREATED);
     }
 }
