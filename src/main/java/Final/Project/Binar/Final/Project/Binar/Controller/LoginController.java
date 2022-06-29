@@ -21,7 +21,8 @@ public class LoginController
     private org.springframework.web.multipart.MultipartFile MultipartFile;
 
     @PostMapping("/registration")
-    public ResponseEntity<?> registration (@RequestBody UserDto user) { //new
+    public ResponseEntity<?> registration (@RequestBody UserDto user)
+    {
         Map<String, String> map = new HashMap<>();
         User userLogin = userLoginServiceImpl.findByEmail(user.getEmail());
         if (userLogin != null)
@@ -34,6 +35,10 @@ public class LoginController
             userLoginServiceImpl.saveUser(user);
             return new ResponseEntity<>("registrasi buyer berhasil", HttpStatus.CREATED);
         }
+//        else
+//        {
+//            return new ResponseEntity<>("data error", HttpStatus.METHOD_NOT_ALLOWED);
+//        }
     }
 
     @PostMapping("/registration-seller")
