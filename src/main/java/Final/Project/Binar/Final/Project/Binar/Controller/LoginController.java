@@ -83,27 +83,27 @@ public class LoginController
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/update/{userId}")
-    public ResponseEntity<?> update_user (@PathVariable long userId, UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
+    @PutMapping("/update/{email}")
+    public ResponseEntity<?> update_user (@PathVariable String email, UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
     {
         User user = userLoginServiceImpl.findByEmail(userDto.getEmail());
-        User userToken = userRepository.findById(userId);
-        if (user != null)
-        {
-            return new ResponseEntity<>("Error User", HttpStatus.BAD_REQUEST);
-        }
-        else
+        User userToken = userRepository.findByEmail(email);
+//        if (user != null)
+//        {
+//            return new ResponseEntity<>("Error User", HttpStatus.BAD_REQUEST);
+//        }
+//        else
         {
             if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))
             {
 //                user.setImg(userDto.getImg().getBytes());
-                userLoginServiceImpl.update_user(userId, userDto);
-                userLoginServiceImpl.display_by_id(userId);
+                userLoginServiceImpl.update_user(email, userDto);
+//                userLoginServiceImpl.display_by_email(email);
                 return new ResponseEntity<>("update akun berhasil", HttpStatus.ACCEPTED);
             }
             else
             {
-                return new ResponseEntity<>("authentication error",HttpStatus.BAD_GATEWAY);
+                return new ResponseEntity<>("kode auth salah",HttpStatus.BAD_GATEWAY);
             }
         }
     }

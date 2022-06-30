@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -70,10 +69,10 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return userRepository.save(saveUser);
     }
 
-    public User update_user(long userId, UserDto userDto)
+    public User update_user(String email, UserDto userDto)
     {
         try {
-            User user = userRepository.findById(userId);
+            User user = userRepository.findByEmail(email);
             if (user != null)
             {
                 user.setUsername(userDto.getUsername());
@@ -95,11 +94,15 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return null;
     }
 
-    public Optional<User> display_by_id(Long user_id)
+    public User display_by_id(long user_id)
     {
         return userRepository.findById(user_id);
     }
 
+    public User display_by_email(String email)
+    {
+        return userRepository.findByEmail(email);
+    }
 
     @Override
     public User saveSeller(UserDto userLogin)
