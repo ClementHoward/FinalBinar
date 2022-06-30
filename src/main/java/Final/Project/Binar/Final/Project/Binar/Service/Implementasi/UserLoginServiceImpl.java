@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -71,21 +70,21 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return userRepository.save(saveUser);
     }
 
-
-
-    public List<User> update_user(long userId, UserDto userDto)
+    public User update_user(long userId, UserDto userDto)
     {
         try {
             User user = userRepository.findById(userId);
             if (user != null)
             {
                 user.setUsername(userDto.getUsername());
-                user.setEmail(userDto.getEmail());
+//                user.setEmail(userDto.getEmail());
                 user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+                user.setKota(userDto.getKota());
+                user.setProvinsi(userDto.getProvinsi());
                 user.setAlamat(userDto.getAlamat());
                 user.setNotelepon(userDto.getNotelepon());
                 user.setImg(userDto.getImg().getBytes());
-                User userupdate = userRepository.save(user);
+                return userRepository.save(user);
             }
         }
         catch (Exception e)
@@ -122,11 +121,13 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
 //            if (user != null)
 //            {
 //                user.setUsername(userDto.getUsername());
-//                user.setEmail(userDto.getEmail());
+//                user.setEmail(userDto.getEmail()); //user gabisa ganti email
+//                user.setKota(userDto.getKota());
+//                user.setProvinsi(userDto.getProvinsi());
 //                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 //                user.setAlamat(userDto.getAlamat());
 //                user.setNotelepon(userDto.getNotelepon());
-//                user.setImg(file.getBytes());
+//                user.setImg(userDto.getImg().getBytes());
 //                User userupdate = userRepository.save(user);
 //            }
 //        }
