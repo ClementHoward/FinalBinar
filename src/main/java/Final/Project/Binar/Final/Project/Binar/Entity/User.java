@@ -48,4 +48,7 @@ public class User {
 
     @Lob
     private byte[] img;
+
+//    @JoinColumn (name = "Idproduct")
+//    private Long IdProduct;
 }

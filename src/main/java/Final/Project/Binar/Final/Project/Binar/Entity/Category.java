@@ -1,5 +1,4 @@
 package Final.Project.Binar.Final.Project.Binar.Entity;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +16,8 @@ public class Category {
     private long idCategory;
     @Column(name ="category")
     private String categoryName;
+    @Lob
+    private byte[] img;
     @OneToMany (fetch = FetchType.EAGER, mappedBy = "category")
-    private List<Product> products;
+    private List<Product> product;
 }
