@@ -9,7 +9,8 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "Category")
-public class Category {
+public class Category
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcategory")
@@ -18,6 +19,6 @@ public class Category {
     private String categoryName;
     @Lob
     private byte[] img;
-    @OneToMany (fetch = FetchType.EAGER, mappedBy = "category")
-    private List<Product> product;
+//    @OneToMany (fetch = FetchType.EAGER, mappedBy = "category")
+//    private List<Product> product;
 }

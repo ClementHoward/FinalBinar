@@ -9,7 +9,8 @@ import java.util.List;
 
 @Transactional
 @Repository
-public interface CategoryRepository extends JpaRepository<Category,Long> {
+public interface CategoryRepository extends JpaRepository<Category,Long>
+{
     Category findByIdCategory (long category);
     List<Category> findAll ();
 }

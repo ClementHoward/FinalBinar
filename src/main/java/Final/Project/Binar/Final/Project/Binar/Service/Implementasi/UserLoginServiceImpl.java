@@ -77,7 +77,7 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
             {
                 user.setUsername(userDto.getUsername());
 //                user.setEmail(userDto.getEmail());
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
                 user.setKota(userDto.getKota());
                 user.setProvinsi(userDto.getProvinsi());
                 user.setAlamat(userDto.getAlamat());
@@ -99,7 +99,7 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return userRepository.findById(user_id);
     }
 
-    public User display_by_email(String email)
+    public User display_by_email(String email, UserDto userDto)
     {
         return userRepository.findByEmail(email);
     }

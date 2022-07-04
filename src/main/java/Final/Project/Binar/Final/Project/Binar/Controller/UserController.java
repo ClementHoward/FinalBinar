@@ -21,15 +21,17 @@ public class UserController {
 
 
     @PostMapping("submit")
-    public ResponseEntity<User> submitUser(UserDto userDto, @RequestParam("img")MultipartFile file) throws IOException {
+    public ResponseEntity<User> submitUser(UserDto userDto, @RequestParam("img")MultipartFile file) throws IOException
+    {
         userDto.setImg(file);
         userService.submitUser(userDto);
         return new ResponseEntity<User>(userService.submitUser(userDto), HttpStatus.CREATED);
     }
 
     @GetMapping("display/all")
-    public ResponseEntity<?> getUser(){
-        return new ResponseEntity<>( userService.display_userall(),HttpStatus.ACCEPTED);
+    public ResponseEntity<?> getUser()
+    {
+        return new ResponseEntity<>(userService.display_userall(),HttpStatus.ACCEPTED);
     }
 
     @GetMapping("display/{userId}")

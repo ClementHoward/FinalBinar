@@ -15,7 +15,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("product/")
-public class ProductController {
+public class ProductController
+{
     @Autowired
     ProductService productService;
 
@@ -23,40 +24,32 @@ public class ProductController {
     public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException
     {
         productDto.setImg(file);
-        productService.submitProduck(productDto);
+        productService.submitProduct(productDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @GetMapping ("display-all")
-    public ResponseEntity<?> getProduct()throws Exception {
-        productService.display_ProductAll();
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-
-
-//        try{
-//            List<Product> display_productAll=productService.display_ProductAll();
-//            return new ResponseEntity<>(display_productAll,HttpStatus.ACCEPTED);
-//        }catch (Exception e)
-//        {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
+    public ResponseEntity<?> getProduct()
+    {
+        List<Product> response = productService.display_ProductAll();
+        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 
     @GetMapping ("display/{idProduct}")
-    public ResponseEntity<?> getProductById(@PathVariable ("idProduct")long Id){
-        productService.display_ProductById(Id);
-         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    public ResponseEntity<?> getProductById(@PathVariable ("idProduct")long Id)
+    {
+        Product response = productService.display_ProductById(Id);
 
-//        Product response = productService.display_ProductById(Id);
-//
-//        if(response != null)
-//        {
-//            return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
-//        }
-//        else
-//        {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
+        if(response != null)
+        {
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<>("barang tidak ditemukan",HttpStatus.NOT_FOUND);
+        }
     }
+
     @PutMapping ("update/{idProduct}")
     public ResponseEntity<?> update_Product(@PathVariable ("idProduct") long Id,ProductDto productDto, @RequestParam("img") MultipartFile file) throws Exception
     {

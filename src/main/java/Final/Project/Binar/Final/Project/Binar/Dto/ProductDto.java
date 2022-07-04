@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+
 @Setter
 @Getter
 public class ProductDto {
@@ -15,6 +16,6 @@ public class ProductDto {
     private String description;
     private String kota;
     private MultipartFile img;
-    private Category category;
+    private int category;
     private String email;
 }

@@ -83,22 +83,33 @@ public class LoginController
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/update/{email}")
-    public ResponseEntity<?> update_user (@PathVariable String email, UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
+    @GetMapping("/profile")
+    public ResponseEntity<?> profile (UserDto userDto) throws IOException
     {
-        User user = userLoginServiceImpl.findByEmail(userDto.getEmail());
-        User userToken = userRepository.findByEmail(email);
-//        if (user != null)
-//        {
-//            return new ResponseEntity<>("Error User", HttpStatus.BAD_REQUEST);
-//        }
-//        else
+        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
+        User display = userLoginServiceImpl.display_by_email(userToken.getEmail(), userDto);
         {
             if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))
             {
-//                user.setImg(userDto.getImg().getBytes());
-                userLoginServiceImpl.update_user(email, userDto);
-//                userLoginServiceImpl.display_by_email(email);
+                return new ResponseEntity<>(display, HttpStatus.ACCEPTED);
+            }
+            else
+            {
+                return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+            }
+        }
+    }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<?> update_user (UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
+    {
+        User user = userLoginServiceImpl.findByEmail(userDto.getEmail());
+        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
+        {
+            if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))
+            {
+                userLoginServiceImpl.update_user(userToken.getEmail(), userDto);
                 return new ResponseEntity<>("update akun berhasil", HttpStatus.ACCEPTED);
             }
             else
