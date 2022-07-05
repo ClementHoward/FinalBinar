@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 
 @Setter
 @Getter
-public class ProductDto {
+public class ProductDto
+{
     private long idProduct;
     private String productName;
     private BigDecimal price;

@@ -21,7 +21,7 @@ public class CategoryController
     @PostMapping("submit")
     public ResponseEntity<?> submit(CategoryDto categoryDto, @RequestParam("img")MultipartFile file)throws Exception
     {
-        categoryDto.setImg(file);
+//        categoryDto.setImg(file);
         categoryService.submitCategory(categoryDto);
         return new ResponseEntity<>("Category Berhasil Dibuat",HttpStatus.CREATED);
     }
@@ -50,7 +50,8 @@ public class CategoryController
 
 //    @PutMapping("update/{idCategory}")
 //    public ResponseEntity<?> update(@PathVariable("idCategory")long Id,CategoryDto categoryDto, @RequestParam("img")
-//            MultipartFile file) throws Exception{
+//            MultipartFile file) throws Exception
+//    {
 //        categoryDto.setImg(file);
 //        return new ResponseEntity<>(HttpStatus.ACCEPTED);
 //    }

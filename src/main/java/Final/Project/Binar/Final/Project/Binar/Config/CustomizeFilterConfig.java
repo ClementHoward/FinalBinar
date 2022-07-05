@@ -52,7 +52,7 @@ public class CustomizeFilterConfig extends UsernamePasswordAuthenticationFilter
         User user = (User) authResult.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC512("Sneakers".getBytes());
         String accessToken = JWT.create().withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+30*60*1000))
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("role", user.getAuthorities().stream().map(GrantedAuthority:: getAuthority).collect(Collectors.toList()))
                 .sign(algorithm);

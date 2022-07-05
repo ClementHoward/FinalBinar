@@ -51,21 +51,18 @@ public class CategoryService
            Product product = productRepository.findById(categoryDto.getProduct().getIdProduct());
 
             if (category != null)
-          {
+            {
 //              category.getProduct();
               category.setCategoryName(categoryDto.getCategoryName());
               category.setImg(categoryDto.getImg().getBytes());
               return categoryRepository.save(category);
-          }
+            }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
             System.out.println("category not found");
         }
         return null;
         }
-
-
-
-
 }
