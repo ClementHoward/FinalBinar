@@ -33,8 +33,8 @@ public class ProductService
         product.setCategory(category);
 
         User seller = userRepository.findById(userid);
-        product.setProvinsi(seller.getProvinsi());
-        product.setKota(seller.getKota());
+//        product.setProvinsi(seller.getProvinsi());
+//        product.setKota(seller.getKota());
 
         product.setStatus(productDto.getStatus());
         product.setProductName(productDto.getProductName());

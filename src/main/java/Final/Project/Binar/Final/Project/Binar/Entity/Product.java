@@ -25,9 +25,9 @@ public class Product
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
     private User userId;
-    @JoinColumn(name = "provinsi", nullable = false)
+    @JoinColumn(name = "provinsi", nullable = true)
     private String provinsi;
-    @JoinColumn(name = "kota", nullable = false)
+    @JoinColumn(name = "kota", nullable = true)
     private String kota;
 
     @Column(name = "status")
