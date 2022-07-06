@@ -1,6 +1,7 @@
 package Final.Project.Binar.Final.Project.Binar.Controller;
 
 import Final.Project.Binar.Final.Project.Binar.Dto.ProductDto;
+import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Product;
 
 import Final.Project.Binar.Final.Project.Binar.Service.ProductService;
@@ -20,11 +21,11 @@ public class ProductController
     @Autowired
     ProductService productService;
 
-    @PostMapping("submit")
-    public ResponseEntity<?> submit(ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException
+    @PostMapping("{userid}/submit")
+    public ResponseEntity<?> submit(ProductDto productDto, @PathVariable ("userid") long userid, @RequestParam("img") MultipartFile file) throws IOException
     {
         productDto.setImg(file);
-        productService.submitProduct(productDto);
+        productService.submitProduct(productDto, userid);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

@@ -14,9 +14,10 @@ public class ProductDto
     private long idProduct;
     private String productName;
     private BigDecimal price;
+    private String status;
     private String description;
     private String kota;
     private MultipartFile img;
-    private int category;
+    private long category;
     private String email;
 }

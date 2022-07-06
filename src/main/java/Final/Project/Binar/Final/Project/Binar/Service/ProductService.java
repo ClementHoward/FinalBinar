@@ -22,21 +22,21 @@ public class ProductService
     ProductRepository productRepository;
     @Autowired
     CategoryRepository categoryRepository;
-//    @Autowired
-//    UserDto userDto;
+    @Autowired
+    UserRepository userRepository;
 
-    public Product submitProduct(ProductDto productDto) throws IOException
+
+    public Product submitProduct(ProductDto productDto, long userid) throws IOException
     {
         Product product = new Product();
-        Category category = categoryRepository.findByIdCategory(productDto.getIdProduct());
-//        User userid = userDto.getUserId(productDto.getIdProduct());
-//        User provinsi = userDto.getProvinsi(productDto.getIdProduct());
-//        User kota = userDto.getKota(productDto.getIdProduct());
-
-//        product.getUser_id();
-//        product.getProvinsi();
-//        product.getKota();
+        Category category = categoryRepository.findByIdCategory(productDto.getCategory());
         product.setCategory(category);
+
+        User seller = userRepository.findById(userid);
+        product.setProvinsi(seller.getProvinsi());
+        product.setKota(seller.getKota());
+
+        product.setStatus(productDto.getStatus());
         product.setProductName(productDto.getProductName());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
@@ -55,7 +55,7 @@ public class ProductService
         return productRepository.findById(Id);
     }
 
-    public Product update_Product(long Id, ProductDto productDto) throws IOException
+    public Product update_Product(long Id,ProductDto productDto) throws IOException
     {
         try
         {
@@ -64,11 +64,13 @@ public class ProductService
 
             if (product != null)
             {
-             product.setCategory(category);
-             product.setProductName(productDto.getProductName());
-             product.setPrice(productDto.getPrice());
-             product.setDescription(productDto.getDescription());
-             product.setImg(productDto.getImg().getBytes());
+                product.setStatus(productDto.getStatus());
+
+                product.setCategory(category);
+                product.setProductName(productDto.getProductName());
+                product.setPrice(productDto.getPrice());
+                product.setDescription(productDto.getDescription());
+                product.setImg(productDto.getImg().getBytes());
                 return productRepository.save(product);
             }
         }

@@ -14,24 +14,21 @@ import java.util.List;
 public class Product
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
     private long idProduct;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_category", nullable = false)
+    @JoinColumn(name = "idcategory", nullable = false)
     private Category category;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user_id;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "provinsi", nullable = false)
-//    private User provinsi;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "kota", nullable = false)
-//    private User kota;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "userid", nullable = false)
+    private User userId;
+    @JoinColumn(name = "provinsi", nullable = false)
+    private String provinsi;
+    @JoinColumn(name = "kota", nullable = false)
+    private String kota;
 
     @Column(name = "status")
     private String status;
