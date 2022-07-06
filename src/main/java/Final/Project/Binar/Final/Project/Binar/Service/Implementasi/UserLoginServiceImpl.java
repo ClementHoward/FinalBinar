@@ -69,15 +69,12 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return userRepository.save(saveUser);
     }
 
-    public User update_user(String email, UserDto userDto)
+    public User update_user(long userid, UserDto userDto)
     {
         try {
-            User user = userRepository.findByEmail(email);
+            User user = userRepository.findById(userid);
             if (user != null)
             {
-                user.setUsername(userDto.getUsername());
-//                user.setEmail(userDto.getEmail());
-//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
                 user.setKota(userDto.getKota());
                 user.setProvinsi(userDto.getProvinsi());
                 user.setAlamat(userDto.getAlamat());

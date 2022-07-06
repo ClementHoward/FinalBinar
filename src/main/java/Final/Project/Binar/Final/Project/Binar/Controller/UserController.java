@@ -2,6 +2,7 @@ package Final.Project.Binar.Final.Project.Binar.Controller;
 
 import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.User;
+import Final.Project.Binar.Final.Project.Binar.Service.Implementasi.UserLoginServiceImpl;
 import Final.Project.Binar.Final.Project.Binar.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserService userService;
-
-
+    @Autowired
+    UserLoginServiceImpl userLoginService;
     @PostMapping("submit")
     public ResponseEntity<User> submitUser(UserDto userDto, @RequestParam("img")MultipartFile file) throws IOException
     {
@@ -49,12 +50,11 @@ public class UserController {
         }
     }
 
-    @PutMapping("update/{userId}")
-    public ResponseEntity<?> update_user(@PathVariable long userId, @RequestParam("img") MultipartFile fileUpload, UserDto userDto) throws IOException
+    @PutMapping("update/{userid}")
+    public ResponseEntity<?> update_user(@PathVariable("userid") long userid, @RequestParam("img") MultipartFile fileUpload, UserDto userDto) throws IOException
     {
         userDto.setImg(fileUpload);
-        userService.update_user(userId,userDto);
-        User response = userService.display_userid(userId);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        userLoginService.update_user(userid,userDto);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

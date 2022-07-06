@@ -4,6 +4,7 @@ import Final.Project.Binar.Final.Project.Binar.Dto.ProductDto;
 import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Product;
 
+import Final.Project.Binar.Final.Project.Binar.Repository.CategoryRepository;
 import Final.Project.Binar.Final.Project.Binar.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ public class ProductController
 {
     @Autowired
     ProductService productService;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @PostMapping("{userid}/submit")
     public ResponseEntity<?> submit(ProductDto productDto, @PathVariable ("userid") long userid, @RequestParam("img") MultipartFile file) throws IOException
@@ -51,12 +54,12 @@ public class ProductController
         }
     }
 
-    @PutMapping ("update/{idProduct}")
-    public ResponseEntity<?> update_Product(@PathVariable ("idProduct") long Id,ProductDto productDto, @RequestParam("img") MultipartFile file) throws Exception
-    {
-        productDto.setImg(file);
-        productService.update_Product(Id,productDto);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
+//    @PutMapping ("update/{idProduct}")
+//    public ResponseEntity<?> update_Product(@PathVariable ("idProduct") long Id,ProductDto productDto, @RequestParam("img") MultipartFile file) throws Exception
+//    {
+//        productDto.setImg(file);
+//        productService.update_Product(Id,productDto);
+//        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//    }
 
 }

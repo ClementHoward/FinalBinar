@@ -21,7 +21,7 @@ public class CategoryController
     @PostMapping("submit")
     public ResponseEntity<?> submit(CategoryDto categoryDto, @RequestParam("img")MultipartFile file)throws Exception
     {
-//        categoryDto.setImg(file);
+        categoryDto.setImg(file);
         categoryService.submitCategory(categoryDto);
         return new ResponseEntity<>("Category Berhasil Dibuat",HttpStatus.CREATED);
     }

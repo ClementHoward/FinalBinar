@@ -109,7 +109,7 @@ public class LoginController
         {
             if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))
             {
-                userLoginServiceImpl.update_user(userToken.getEmail(), userDto);
+                userLoginServiceImpl.update_user(userToken.getUserId(), userDto);
                 return new ResponseEntity<>("update akun berhasil", HttpStatus.ACCEPTED);
             }
             else
