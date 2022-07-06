@@ -36,8 +36,8 @@ public class ProductService
         product.setUserId(userRepository.findById(productDto.getUserid()));
         product.setStatus(productDto.getStatus());
         product.setProductName(productDto.getProductName());
-        product.setKota(productDto.getKota());
-        product.setProvinsi(productDto.getProvinsi());
+        product.setKota(seller.getKota());
+        product.setProvinsi(seller.getProvinsi());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg().getBytes());
@@ -55,31 +55,19 @@ public class ProductService
         return productRepository.findById(Id);
     }
 
-//    public Product update_Product(long Id,ProductDto productDto) throws IOException
-//    {
-//        try
-//        {
-//            Product product = productRepository.findById(Id);
-//            Category category = categoryRepository.findByIdCategory(productDto.getCategory());
-//
-//            if (product != null)
-//            {
-//                product.setStatus(productDto.getStatus());
-//
-//                product.setCategory(category);
-//                product.setProductName(productDto.getProductName());
-//                product.setPrice(productDto.getPrice());
-//                product.setDescription(productDto.getDescription());
-//                product.setImg(productDto.getImg().getBytes());
-//                return productRepository.save(product);
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//            System.out.println("product not found");
-//        }
-//        return null;
-//    }
+    public void update_Product(long Id,ProductDto productDto) throws IOException
+    {
+       User user = userRepository.findById(Id);
+       Product product = productRepository.findById(Id);
+       product.setProductName(productDto.getProductName());
+       product.setCategory(categoryRepository.findByIdCategory(productDto.getCategory()));
+       product.setImg(productDto.getImg().getBytes());
+       product.setStatus(productDto.getStatus());
+       product.setKota(user.getKota());
+       product.setProvinsi(user.getProvinsi());
+       productRepository.save(product);
+
+
+    }
 
 }

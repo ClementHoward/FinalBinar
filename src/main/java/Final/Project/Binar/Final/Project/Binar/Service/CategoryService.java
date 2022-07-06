@@ -26,8 +26,6 @@ public class CategoryService
     public Category submitCategory (CategoryDto categoryDto) throws IOException
     {
         Category category = new Category();
-//        Product product = productRepository.findById(category.getIdCategory());
-//        category.getProduct();
         category.setCategoryName(categoryDto.getCategoryName());
         category.setImg(categoryDto.getImg().getBytes());
         return categoryRepository.save(category);
@@ -43,26 +41,17 @@ public class CategoryService
         return categoryRepository.findByIdCategory(Id);
     }
 
-    public Category update_Category(long Id, CategoryDto categoryDto, MultipartFile file) throws Exception
+    public Boolean update_Category(long Id, CategoryDto categoryDto) throws Exception
     {
-        try
-        {
-           Category category = categoryRepository.findByIdCategory(Id);
-           Product product = productRepository.findById(categoryDto.getProduct().getIdProduct());
+        if(categoryRepository.existsById(Id)){
+            Category category = categoryRepository.findByIdCategory(Id);
+            category.setImg(categoryDto.getImg().getBytes());
+            category.setCategoryName(categoryDto.getCategoryName());
+            categoryRepository.save(category);
+            return true;
 
-            if (category != null)
-            {
-//              category.getProduct();
-              category.setCategoryName(categoryDto.getCategoryName());
-              category.setImg(categoryDto.getImg().getBytes());
-              return categoryRepository.save(category);
-            }
+        }else {
+         return false;
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("category not found");
-        }
-        return null;
-        }
+    }
 }

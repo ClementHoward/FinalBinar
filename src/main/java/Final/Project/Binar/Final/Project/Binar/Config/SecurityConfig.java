@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/registration","/registration-seller", "swagger-ui.html/**" ,"/refresh-token").permitAll();
         http.authorizeRequests().antMatchers( "/login/**").permitAll();
-        http.authorizeRequests().antMatchers("/user/display-all", "/product/submit,/update/{Id}").hasAnyAuthority("SELLER")
+        http.authorizeRequests().antMatchers("/user/display-all", "/product/submit,/update/{Id} ").hasAnyAuthority("SELLER")
                 .and().authorizeRequests().antMatchers("/user/update-user/{userId}", "/user/display-all").hasAnyAuthority("BUYER");
         http.authorizeRequests().anyRequest().authenticated();
 

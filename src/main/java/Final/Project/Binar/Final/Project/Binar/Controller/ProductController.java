@@ -54,12 +54,12 @@ public class ProductController
         }
     }
 
-//    @PutMapping ("update/{idProduct}")
-//    public ResponseEntity<?> update_Product(@PathVariable ("idProduct") long Id,ProductDto productDto, @RequestParam("img") MultipartFile file) throws Exception
-//    {
-//        productDto.setImg(file);
-//        productService.update_Product(Id,productDto);
-//        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-//    }
+    @PutMapping ("update/{idProduct}")
+    public ResponseEntity<?> update_Product(@PathVariable ("idProduct") long Id,ProductDto productDto, @RequestParam("img") MultipartFile file) throws Exception
+    {
+        productDto.setImg(file);
+        productService.update_Product(Id,productDto);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 }

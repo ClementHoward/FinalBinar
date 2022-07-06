@@ -48,11 +48,17 @@ public class CategoryController
         }
     }
 
-//    @PutMapping("update/{idCategory}")
-//    public ResponseEntity<?> update(@PathVariable("idCategory")long Id,CategoryDto categoryDto, @RequestParam("img")
-//            MultipartFile file) throws Exception
-//    {
-//        categoryDto.setImg(file);
-//        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-//    }
+    @PutMapping("update/{idCategory}")
+    public ResponseEntity<?> update(@PathVariable("idCategory")long Id,CategoryDto categoryDto, @RequestParam("img")
+            MultipartFile file) throws Exception
+    {
+        categoryDto.setImg(file);
+        if (categoryService.update_Category(Id,categoryDto)){
+            return new ResponseEntity<>("berhasil",HttpStatus.ACCEPTED);
+        }else {
+            return new ResponseEntity<>("salah",HttpStatus.NOT_FOUND);
+        }
+
+
+    }
 }
