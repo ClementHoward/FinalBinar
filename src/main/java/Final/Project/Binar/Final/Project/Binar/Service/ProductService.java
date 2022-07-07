@@ -6,16 +6,20 @@ import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Category;
 import Final.Project.Binar.Final.Project.Binar.Entity.Product;
 import Final.Project.Binar.Final.Project.Binar.Entity.User;
+import Final.Project.Binar.Final.Project.Binar.Entity.Vw_Product;
 import Final.Project.Binar.Final.Project.Binar.Repository.CategoryRepository;
 import Final.Project.Binar.Final.Project.Binar.Repository.ProductRepository;
 import Final.Project.Binar.Final.Project.Binar.Repository.UserRepository;
+import Final.Project.Binar.Final.Project.Binar.Repository.Vw_ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService
 {
     @Autowired
@@ -24,6 +28,8 @@ public class ProductService
     CategoryRepository categoryRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    Vw_ProductRepository vw_productRepository;
 
 
     public Product submitProduct(ProductDto productDto, long userid) throws IOException
@@ -45,14 +51,16 @@ public class ProductService
         return productRepository.save(product);
     }
 
-    public List<Product> display_ProductAll()
+    public List<Vw_Product> display_ProductAll()
     {
-        return productRepository.findAll();
+
+        return vw_productRepository.findAll();
     }
 
-    public Product display_ProductById(long Id)
+    public Vw_Product display_ProductById(long Id)
     {
-        return productRepository.findById(Id);
+
+        return vw_productRepository.findByIdProduct(Id);
     }
 
     public void update_Product(long Id,ProductDto productDto) throws IOException

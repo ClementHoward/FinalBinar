@@ -4,6 +4,7 @@ import Final.Project.Binar.Final.Project.Binar.Dto.ProductDto;
 import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Product;
 
+import Final.Project.Binar.Final.Project.Binar.Entity.Vw_Product;
 import Final.Project.Binar.Final.Project.Binar.Repository.CategoryRepository;
 import Final.Project.Binar.Final.Project.Binar.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("product/")
+@Transactional
 public class ProductController
 {
     @Autowired
@@ -33,16 +36,18 @@ public class ProductController
     }
 
     @GetMapping ("display-all")
+
     public ResponseEntity<?> getProduct()
     {
-        List<Product> response = productService.display_ProductAll();
+        List<Vw_Product> response = productService.display_ProductAll();
         return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 
     @GetMapping ("display/{idProduct}")
+
     public ResponseEntity<?> getProductById(@PathVariable ("idProduct")long Id)
     {
-        Product response = productService.display_ProductById(Id);
+        Vw_Product response = productService.display_ProductById(Id);
 
         if(response != null)
         {

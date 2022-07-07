@@ -1,5 +1,5 @@
-//package Final.Project.Binar.Final.Project.Binar.Entity;
-//
+//package Final.Project.Binar.Final.Project.Binar.Entity;//package Final.Project.Binar.Final.Project.Binar.Entity;
+////
 //import lombok.Getter;
 //import lombok.Setter;
 //import org.hibernate.annotations.CreationTimestamp;
