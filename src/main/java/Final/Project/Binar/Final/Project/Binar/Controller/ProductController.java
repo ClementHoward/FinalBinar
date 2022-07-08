@@ -24,8 +24,6 @@ public class ProductController
 {
     @Autowired
     ProductService productService;
-    @Autowired
-    CategoryRepository categoryRepository;
 
     @PostMapping("{userid}/submit")
     public ResponseEntity<?> submit(ProductDto productDto, @PathVariable ("userid") long userid, @RequestParam("img") MultipartFile file) throws IOException
@@ -66,5 +64,4 @@ public class ProductController
         productService.update_Product(Id,productDto);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
 }

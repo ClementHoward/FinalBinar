@@ -34,16 +34,18 @@ public class ProductService
 
     public Product submitProduct(ProductDto productDto, long userid) throws IOException
     {
-        Product product = new Product();
-        Category category = new Category();
         User seller = userRepository.findById(userid);
+        Product product = new Product();
+
+        Category category = new Category();
         product.setCategory(categoryRepository.findById(productDto.getCategory()));
 
         product.setUserId(userRepository.findById(productDto.getUserid()));
+        product.setProvinsi(seller.getProvinsi());
+        product.setKota(seller.getKota());
+
         product.setStatus(productDto.getStatus());
         product.setProductName(productDto.getProductName());
-        product.setKota(seller.getKota());
-        product.setProvinsi(seller.getProvinsi());
         product.setPrice(productDto.getPrice());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg().getBytes());
@@ -74,8 +76,5 @@ public class ProductService
        product.setKota(user.getKota());
        product.setProvinsi(user.getProvinsi());
        productRepository.save(product);
-
-
     }
-
 }

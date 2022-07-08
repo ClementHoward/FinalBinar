@@ -9,10 +9,9 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface ProductRepository extends JpaRepository<Product,Long> {
+public interface ProductRepository extends JpaRepository<Product,Long>
+{
 //    Repository FindByIdProduct (long idProduct);
-
-
      List<Product> findAll ();
      Product findById (long Id);
 }

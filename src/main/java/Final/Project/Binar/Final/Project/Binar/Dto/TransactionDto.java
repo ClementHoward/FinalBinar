@@ -13,15 +13,15 @@ import java.util.Date;
 @Getter
 public class TransactionDto
 {
-    private long idProduct;
-    private long user_id;
-    private long product_id;
-    private String status;
-    private BigDecimal harga;
-    private BigDecimal tawar;
+    private long idTransaksi;
 
-    @CreationTimestamp
-    private Date created;
+    private long userId;
+
+    private long idProduct;
+    private String status; //ditawar
+    private BigDecimal price;
+
+    private BigDecimal tawar;
     @CreationTimestamp
     private Date updated;
 }

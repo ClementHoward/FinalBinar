@@ -17,9 +17,11 @@ public class Product
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_product")
     private long idProduct;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcategory", nullable = false)
     private Category category;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
     private User userId;
@@ -27,7 +29,8 @@ public class Product
     private String provinsi;
     @Column(name = "kota")
     private String kota;
-    @Column(name = "status")
+
+    @Column(name = "status") //tersedia, ditawar, proses, terjual
     private String status;
     @Column(name = "namaproduct")
     private String productName;
@@ -37,5 +40,4 @@ public class Product
     private String description;
     @Lob
     private byte[] img;
-
 }

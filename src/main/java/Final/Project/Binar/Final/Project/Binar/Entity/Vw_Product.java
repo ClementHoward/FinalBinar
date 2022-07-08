@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 @Setter
 @Entity
 @Table(name = "vw_product")
-public class Vw_Product {
+public class Vw_Product
+{
     @Id
     @Column(name = "id_product")
     private long idProduct;

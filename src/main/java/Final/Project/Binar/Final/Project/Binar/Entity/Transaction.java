@@ -1,45 +1,39 @@
-//package Final.Project.Binar.Final.Project.Binar.Entity;//package Final.Project.Binar.Final.Project.Binar.Entity;
-////
-//import lombok.Getter;
-//import lombok.Setter;
-//import org.hibernate.annotations.CreationTimestamp;
-//
-//import javax.persistence.*;
-//import java.math.BigDecimal;
-//import java.util.Date;
-//
-//@Entity
-//@Getter
-//@Setter
-//@Table(name = "Transaction")
-//
-//public class Transaction
-//{
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id_transaksi")
-//    private long idProduct;
-//
-//    @Column(name = "user_id") //manytoone
-//    private long user_id;
-//
-//    @Column(name = "product_id") //manytoone
-//    private long product_id;
-//
-//    @Column(name = "status")
-//    private String status;
-//
-//    @Column(name = "harga")
-//    private BigDecimal harga;
-//
-//    @Column(name = "tawar")
-//    private BigDecimal tawar;
-//
-//    @CreationTimestamp
-//    @Column(name = "jam dibuat")
-//    private Date created;
-//
-//    @CreationTimestamp
-//    @Column(name = "jam update")
-//    private Date updated;
-//}
+package Final.Project.Binar.Final.Project.Binar.Entity;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@Entity
+@Getter
+@Setter
+@Table(name = "Transaction")
+public class Transaction
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_transaksi")
+    private long idTransaksi;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "userid", nullable = false)
+    private User userId;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_product")
+    private Product idProduct;
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @Column(name = "status") //ditawar,diterima,ditolak
+    private String status;
+    @Column(name = "tawar")
+    private BigDecimal tawar;
+    @CreationTimestamp
+    @Column(name = "last_updated")
+    private Date updated;
+}

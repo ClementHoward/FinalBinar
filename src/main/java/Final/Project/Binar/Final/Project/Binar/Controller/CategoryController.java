@@ -58,7 +58,5 @@ public class CategoryController
         }else {
             return new ResponseEntity<>("salah",HttpStatus.NOT_FOUND);
         }
-
-
     }
 }

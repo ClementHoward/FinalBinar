@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface Vw_ProductRepository extends JpaRepository<Vw_Product, Long> {
-
+public interface Vw_ProductRepository extends JpaRepository<Vw_Product, Long>
+{
     List<Vw_Product> findAll();
     Vw_Product findByIdProduct (long idProduct);
 }

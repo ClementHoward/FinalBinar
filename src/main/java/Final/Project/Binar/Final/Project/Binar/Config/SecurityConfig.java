@@ -60,14 +60,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .anyRequest()
 //                .requiresSecure();
         //uncomment if deploy to heroku
+
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().antMatchers("/registration","/registration-seller", "swagger-ui.html/**" ,"/refresh-token").permitAll();
-        http.authorizeRequests().antMatchers( "/login/**").permitAll();
-        http.authorizeRequests().antMatchers("/user/display-all", "/product/submit,/update/{Id} ").hasAnyAuthority("SELLER")
-                .and().authorizeRequests().antMatchers("/user/update-user/{userId}", "/user/display-all").hasAnyAuthority("BUYER");
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers(
+                "/registration", "/registration-seller",
+                "/refresh-token", "/login",
+                "/product/display-all", "/product/display/**").permitAll();
 
+        http.authorizeRequests().antMatchers(
+                "/product/**/submit", "/product/update/**")
+                .hasAnyAuthority("SELLER").and().authorizeRequests().antMatchers(
+                "/transaction/new")
+                .hasAnyAuthority("BUYER");
+
+        http.authorizeRequests().anyRequest().authenticated();
 
         http.addFilterBefore(new CustomizeAuthorFilterConfig(), UsernamePasswordAuthenticationFilter.class);
         http.addFilter(new CustomizeFilterConfig(authenticationManagerBean()));

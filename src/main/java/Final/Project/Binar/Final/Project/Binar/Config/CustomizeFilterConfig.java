@@ -51,6 +51,7 @@ public class CustomizeFilterConfig extends UsernamePasswordAuthenticationFilter
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC512("Sneakers".getBytes());
+
         String accessToken = JWT.create().withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+30*60*1000))
                 .withIssuer(request.getRequestURL().toString())
@@ -59,7 +60,7 @@ public class CustomizeFilterConfig extends UsernamePasswordAuthenticationFilter
 
         String refreshToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis()+10*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+30*60*1000))
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
 
