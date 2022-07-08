@@ -30,7 +30,7 @@ public class Product
     @Column(name = "kota")
     private String kota;
 
-    @Column(name = "status") //tersedia, ditawar, proses, terjual
+    @Column(name = "status") //tersedia, ditawar, diproses, terjual
     private String status;
     @Column(name = "namaproduct")
     private String productName;

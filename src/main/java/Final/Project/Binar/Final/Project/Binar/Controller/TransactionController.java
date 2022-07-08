@@ -44,9 +44,10 @@ public class TransactionController
     }
 
     @PutMapping("{idTransaksi}/diterima")
-    public ResponseEntity<?> diterima()
+    public ResponseEntity<?> diterima(@PathVariable("idTransaksi") long idTransaksi) throws IOException
     {
-        return new ResponseEntity<>(transactionService.);
+        transactionService.statusDiterima(idTransaksi);
+        return new ResponseEntity<>("penawaran diterima",HttpStatus.ACCEPTED);
     }
 
     @PutMapping("{idTransaksi}/ditolak")

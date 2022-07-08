@@ -14,7 +14,7 @@ public class ProductDto
     private long idProduct;
     private String productName;
     private BigDecimal price;
-    private String status; //tersedia, ditawar, proses, terjual
+    private String status; //tersedia, ditawar, diproses, terjual
     private String description;
     private String kota;
     private MultipartFile img;

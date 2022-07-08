@@ -71,6 +71,9 @@ public class TransactionService
         Transaction transaction = transactionRepository.findByIdTransaksi(Id);
         Product product = productRepository.findById(transaction.getIdProduct().getIdProduct());
 
+        transactionRepository.diterima("ditolak",transaction.getIdProduct().getIdProduct());
+        
+        product.setStatus("diproses");
         transaction.setStatus("diterima");
         transaction.setPrice(transaction.getPrice());
 
