@@ -101,7 +101,7 @@ public class LoginController
     }
 
 
-    @PutMapping("/update/{userId}")
+    @PutMapping("/update")
     public ResponseEntity<?> update_user (UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
     {
         User user = userLoginServiceImpl.findByEmail(userDto.getEmail());

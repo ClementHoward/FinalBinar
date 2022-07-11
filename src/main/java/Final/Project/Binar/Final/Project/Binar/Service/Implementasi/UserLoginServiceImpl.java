@@ -75,6 +75,7 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
             User user = userRepository.findById(userid);
             if (user != null)
             {
+//                user.setUsername(userDto.getUsername());
                 user.setKota(userDto.getKota());
                 user.setProvinsi(userDto.getProvinsi());
                 user.setAlamat(userDto.getAlamat());
