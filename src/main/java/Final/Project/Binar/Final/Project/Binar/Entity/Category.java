@@ -19,6 +19,5 @@ public class Category
     private String categoryName;
     @Lob
     private byte[] img;
-//    @OneToMany (fetch = FetchType.EAGER, mappedBy = "category")
-//    private List<Product> product;
+
 }
