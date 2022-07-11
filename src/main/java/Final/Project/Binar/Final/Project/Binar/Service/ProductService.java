@@ -67,14 +67,15 @@ public class ProductService
 
     public void update_Product(long Id,ProductDto productDto) throws IOException
     {
-       User user = userRepository.findById(Id);
        Product product = productRepository.findById(Id);
-       product.setProductName(productDto.getProductName());
        product.setCategory(categoryRepository.findByIdCategory(productDto.getCategory()));
-       product.setImg(productDto.getImg().getBytes());
+
        product.setStatus(productDto.getStatus());
-       product.setKota(user.getKota());
-       product.setProvinsi(user.getProvinsi());
+       product.setProductName(productDto.getProductName());
+       product.setPrice(productDto.getPrice());
+       product.setDescription(productDto.getDescription());
+       product.setImg(productDto.getImg().getBytes());
+
        productRepository.save(product);
     }
 }

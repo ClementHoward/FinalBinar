@@ -34,7 +34,6 @@ public class ProductController
     }
 
     @GetMapping ("display-all")
-
     public ResponseEntity<?> getProduct()
     {
         List<Vw_Product> response = productService.display_ProductAll();
@@ -42,7 +41,6 @@ public class ProductController
     }
 
     @GetMapping ("display/{idProduct}")
-
     public ResponseEntity<?> getProductById(@PathVariable ("idProduct")long Id)
     {
         Vw_Product response = productService.display_ProductById(Id);

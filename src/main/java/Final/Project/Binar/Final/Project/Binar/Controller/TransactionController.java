@@ -37,10 +37,10 @@ public class TransactionController
         return new ResponseEntity<>(transactionService.display_TransactionByIdProduct(idProduct), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("display/seller/{idSeller}")
-    public ResponseEntity<?> displayBySeller(@PathVariable("idSeller") long idSeller)
+    @GetMapping("display/user/{idUser}")
+    public ResponseEntity<?> displayBySeller(@PathVariable("idUser") long idUser)
     {
-        return new ResponseEntity<>(transactionService.display_TransactionByUserId(idSeller), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(transactionService.display_TransactionByUserId(idUser), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("{idTransaksi}/diterima")
