@@ -4,7 +4,6 @@ import Final.Project.Binar.Final.Project.Binar.Dto.UserDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.User;
 import Final.Project.Binar.Final.Project.Binar.Repository.UserRepository;
 import Final.Project.Binar.Final.Project.Binar.Service.Implementasi.UserLoginServiceImpl;
-import Final.Project.Binar.Final.Project.Binar.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -100,11 +98,9 @@ public class LoginController
         }
     }
 
-
     @PutMapping("/update")
     public ResponseEntity<?> update_user (UserDto userDto, @RequestParam("img") MultipartFile file) throws IOException
     {
-        User user = userLoginServiceImpl.findByEmail(userDto.getEmail());
         User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
         {
             if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))

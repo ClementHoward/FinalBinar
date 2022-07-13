@@ -16,7 +16,7 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction,Long>
 {
     Transaction findByIdTransaksi(long Id);
-//    List<Transaction> findByIdUser(long userId);
+    List<Transaction> findByUserId(long userId);
 
     @Modifying
     @Query(value = "UPDATE transaction SET status = :st WHERE id_product = :id", nativeQuery = true)

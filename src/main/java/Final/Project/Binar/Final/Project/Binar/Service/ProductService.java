@@ -31,6 +31,10 @@ public class ProductService
     @Autowired
     Vw_ProductRepository vw_productRepository;
 
+    public Product findById(long userid)
+    {
+        return productRepository.findByUserId(userid);
+    }
 
     public Product submitProduct(ProductDto productDto, long userid) throws IOException
     {
@@ -55,27 +59,32 @@ public class ProductService
 
     public List<Vw_Product> display_ProductAll()
     {
-
         return vw_productRepository.findAll();
+    }
+
+    public List<Vw_Product> display_ProductByCategory(long category)
+    {
+        return vw_productRepository.findByCategory(category);
     }
 
     public Vw_Product display_ProductById(long Id)
     {
-
         return vw_productRepository.findByIdProduct(Id);
     }
 
     public void update_Product(long Id,ProductDto productDto) throws IOException
     {
-       Product product = productRepository.findById(Id);
-       product.setCategory(categoryRepository.findByIdCategory(productDto.getCategory()));
 
-       product.setStatus(productDto.getStatus());
-       product.setProductName(productDto.getProductName());
-       product.setPrice(productDto.getPrice());
-       product.setDescription(productDto.getDescription());
-       product.setImg(productDto.getImg().getBytes());
 
-       productRepository.save(product);
+        Product product = productRepository.findById(Id);
+        product.setCategory(categoryRepository.findByIdCategory(productDto.getCategory()));
+
+        product.setStatus(productDto.getStatus());
+        product.setProductName(productDto.getProductName());
+        product.setPrice(productDto.getPrice());
+        product.setDescription(productDto.getDescription());
+        product.setImg(productDto.getImg().getBytes());
+
+        productRepository.save(product);
     }
 }

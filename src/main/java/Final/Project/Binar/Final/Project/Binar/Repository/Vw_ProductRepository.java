@@ -13,4 +13,5 @@ public interface Vw_ProductRepository extends JpaRepository<Vw_Product, Long>
 {
     List<Vw_Product> findAll();
     Vw_Product findByIdProduct (long idProduct);
+    List<Vw_Product> findByCategory(long category);
 }

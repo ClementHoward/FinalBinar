@@ -31,6 +31,7 @@ public class Transaction
 
     @Column(name = "status") //ditawar,diterima,ditolak
     private String status;
+
     @Column(name = "tawar")
     private BigDecimal tawar;
     @CreationTimestamp
