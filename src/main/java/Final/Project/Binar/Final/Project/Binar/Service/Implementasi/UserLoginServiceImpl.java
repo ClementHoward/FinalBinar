@@ -92,10 +92,27 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         return null;
     }
 
-    public User display_by_id(long user_id)
-    {
-        return userRepository.findById(user_id);
-    }
+//    public User update_user_tanpa_foto(long userid, UserDto userDto)
+//    {
+//        try {
+//            User user = userRepository.findById(userid);
+//            if (user != null)
+//            {
+//                user.setKota(userDto.getKota());
+//                user.setProvinsi(userDto.getProvinsi());
+//                user.setAlamat(userDto.getAlamat());
+//                user.setNotelepon(userDto.getNotelepon());
+//                return userRepository.save(user);
+//            }
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//            System.out.println("user not found");
+//        }
+//        return null;
+//    }
+
 
     public User display_by_email(String email, UserDto userDto)
     {
@@ -113,30 +130,4 @@ public class UserLoginServiceImpl implements UserLoginService, UserDetailsServic
         saveUser.setPassword(passwordEncoder.encode(userLogin.getPassword()));
         return userRepository.save(saveUser);
     }
-
-//    public List<User> update_seller(long userId, UserDto userDto, MultipartFile file)
-//    {
-//        try
-//        {
-//            User user = userRepository.findById(userId);
-//            if (user != null)
-//            {
-//                user.setUsername(userDto.getUsername());
-//                user.setEmail(userDto.getEmail()); //user gabisa ganti email
-//                user.setKota(userDto.getKota());
-//                user.setProvinsi(userDto.getProvinsi());
-//                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-//                user.setAlamat(userDto.getAlamat());
-//                user.setNotelepon(userDto.getNotelepon());
-//                user.setImg(userDto.getImg().getBytes());
-//                User userupdate = userRepository.save(user);
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//            System.out.println("user not found");
-//        }
-//        return null;
-//    }
 }
