@@ -20,6 +20,7 @@ public class ProductDto
     private MultipartFile img;
     private long category;
     private String email;
+    private String username;
     private long userid;
     private String provinsi;
 }

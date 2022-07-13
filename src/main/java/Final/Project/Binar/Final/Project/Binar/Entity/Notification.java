@@ -36,6 +36,4 @@ public class Notification {
     @CreationTimestamp
     @Column(name = "jam_notifikasi")
     private Date jam;
-
-
 }
