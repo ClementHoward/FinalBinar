@@ -18,6 +18,8 @@ public class Vw_Product
     private long category;
     @Column(name = "userid", nullable = false)
     private long userId;
+    @Column(name = "username")
+    private String username;
     @Column(name = "provinsi")
     private String provinsi;
     @Column(name = "kota")
