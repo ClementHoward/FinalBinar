@@ -48,6 +48,7 @@ public class ProductService
         product.setUsername(seller.getUsername());
         product.setProvinsi(seller.getProvinsi());
         product.setKota(seller.getKota());
+        product.setImgpenjual(seller.getImg());
 
         product.setStatus(productDto.getStatus());
         product.setProductName(productDto.getProductName());

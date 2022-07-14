@@ -28,6 +28,8 @@ public class Vw_Product
     private String status;
     @Column(name = "namaproduct")
     private String productName;
+    @Column(name = "imgpenjual")
+    private byte[] imgpenjual;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "description")

@@ -18,6 +18,7 @@ public class ProductDto
     private String description;
     private String kota;
     private MultipartFile img;
+    private MultipartFile imgpenjual;
     private long category;
     private String email;
     private String username;

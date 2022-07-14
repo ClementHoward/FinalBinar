@@ -31,6 +31,9 @@ public class Product
     private String provinsi;
     @Column(name = "kota")
     private String kota;
+    @Column(name = "imgpenjual")
+    private byte[] imgpenjual;
+
 
     @Column(name = "status") //tersedia, ditawar, diproses, terjual
     private String status;
