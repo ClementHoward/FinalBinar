@@ -19,6 +19,6 @@ public interface TransactionRepository extends JpaRepository<Transaction,Long>
     List<Transaction> findByUserId(long userId);
 
     @Modifying
-    @Query(value = "UPDATE transaction SET status = :st WHERE id_product = :id", nativeQuery = true)
+    @Query(value = "UPDATE transaction SET last_updated = NOW(), status = :st WHERE id_product = :id", nativeQuery = true)
     void diterima(@Param("st") String status, @Param("id") long id);
 }
