@@ -23,17 +23,24 @@ public class Transaction
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "userid", nullable = false)
     private User userId;
+    @Column(name = "imgbuyer")
+    private byte[] imgbuyer;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idseller")
     private User userPenjual;
+    @Column(name = "imgseller")
+    private byte[] imgseller;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_product")
     private Product idProduct;
     @Column(name = "price")
     private BigDecimal price;
-
+    @Column(name = "imgproduk")
+    private byte[] imgproduk;
 
 
     @Column(name = "status") //ditawar,diterima,ditolak

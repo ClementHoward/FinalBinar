@@ -38,25 +38,36 @@ public class ProductService
 
     public Product submitProduct(ProductDto productDto, long userid) throws IOException
     {
-        User seller = userRepository.findById(userid);
-        Product product = new Product();
+        List<Vw_Product> cekCountTersedia = vw_productRepository.findByUserIdAndStatus(userid, "tersedia");
+        List<Vw_Product> cekCountDitawar = vw_productRepository.findByUserIdAndStatus(userid, "ditawar");
+        int tersedia = cekCountTersedia.size();
+        int ditawar = cekCountDitawar.size();
+        int total = tersedia+ditawar;
 
-        Category category = new Category();
-        product.setCategory(categoryRepository.findById(productDto.getCategory()));
+        if (total < 4) {
+            User seller = userRepository.findById(userid);
+            Product product = new Product();
+            Category category = new Category();
+            product.setCategory(categoryRepository.findById(productDto.getCategory()));
 
-        product.setUserId(userRepository.findById(productDto.getUserid()));
-        product.setUsername(seller.getUsername());
-        product.setProvinsi(seller.getProvinsi());
-        product.setKota(seller.getKota());
-        product.setImgpenjual(seller.getImg());
+            product.setUserId(userRepository.findById(productDto.getUserid()));
+            product.setUsername(seller.getUsername());
+            product.setProvinsi(seller.getProvinsi());
+            product.setKota(seller.getKota());
+            product.setImgpenjual(seller.getImg());
 
-        product.setStatus(productDto.getStatus());
-        product.setProductName(productDto.getProductName());
-        product.setPrice(productDto.getPrice());
-        product.setDescription(productDto.getDescription());
-        product.setImg(productDto.getImg().getBytes());
+            product.setStatus(productDto.getStatus());
+            product.setProductName(productDto.getProductName());
+            product.setPrice(productDto.getPrice());
+            product.setDescription(productDto.getDescription());
+            product.setImg(productDto.getImg().getBytes());
 
-        return productRepository.save(product);
+            return productRepository.save(product);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public List<Vw_Product> display_ProductAll()
@@ -81,8 +92,6 @@ public class ProductService
 
     public void update_Product(long Id,ProductDto productDto) throws IOException
     {
-
-
         Product product = productRepository.findById(Id);
         product.setCategory(categoryRepository.findByIdCategory(productDto.getCategory()));
 

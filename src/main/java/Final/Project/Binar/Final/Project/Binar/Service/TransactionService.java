@@ -41,12 +41,16 @@ public class TransactionService
         Transaction transaction = new Transaction();
 
         transaction.setUserId(buyer);
+        transaction.setImgbuyer(buyer.getImg());
+
+        transaction.setUserPenjual(product.getUserId());
+        transaction.setImgseller(product.getImgpenjual());
 
         transaction.setIdProduct(product);
-        transaction.setStatus("ditawar");
         transaction.setPrice(product.getPrice());
-        transaction.setUserPenjual(product.getUserId());
+        transaction.setImgproduk(product.getImg());
 
+        transaction.setStatus("ditawar");
         transaction.setTawar(transactionDto.getTawar());
 
         notif.setIdProduct(product);

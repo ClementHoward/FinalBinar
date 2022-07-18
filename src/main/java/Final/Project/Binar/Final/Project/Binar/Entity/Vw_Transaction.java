@@ -17,18 +17,30 @@ public class Vw_Transaction
     @Id
     @Column(name = "id_transaksi")
     private long idTransaksi;
+
     @Column(name = "userid", nullable = false)
     private long userId;
+    @Column(name = "imgbuyer")
+    private byte[] imgbuyer;
+
+    @Column(name = "idseller")
+    private long userPenjual;
+    @Column(name = "imgseller")
+    private byte[] imgseller;
+
     @Column(name = "id_product")
     private long idProduct;
-    @Column(name = "status")
-    private String status;
     @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "imgproduk")
+    private byte[] imgproduk;
+
+    @Column(name = "status")
+    private String status;
+
     @Column(name = "tawar")
     private BigDecimal tawar;
     @Column(name = "last_updated")
     private Date updated;
-    @Column(name = "idseller")
-    private long userPenjual;
+
 }

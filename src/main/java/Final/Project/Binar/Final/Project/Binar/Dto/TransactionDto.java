@@ -5,6 +5,7 @@ import Final.Project.Binar.Final.Project.Binar.Entity.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Column;
 import java.math.BigDecimal;
@@ -17,10 +18,14 @@ public class TransactionDto
     private long idTransaksi;
 
     private long userId;
+    private MultipartFile imgbuyer;
+
+    private User userPenjual;
+    private MultipartFile imgseller;
 
     private long idProduct;
     private BigDecimal price;
-    private User userPenjual;
+    private MultipartFile imgproduk;
 
     private String status; //ditawar-diterima-ditolak
 

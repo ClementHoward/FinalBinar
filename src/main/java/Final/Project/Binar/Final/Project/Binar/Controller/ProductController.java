@@ -37,10 +37,29 @@ public class ProductController {
     ProductRepository productRepository;
 
     @PostMapping("{userid}/submit")
-    public ResponseEntity<?> submit(ProductDto productDto, @PathVariable("userid") long userid, @RequestParam("img") MultipartFile file) throws IOException {
-        productDto.setImg(file);
-        productService.submitProduct(productDto, userid);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> submit(ProductDto productDto, @PathVariable("userid") long userid, @RequestParam("img") MultipartFile file) throws IOException
+    {
+        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
+        Product seller = productRepository.findById(userid);
+
+
+        if (userToken.getEmail().equalsIgnoreCase(authentication().getPrincipal().toString()))
+        {
+            productDto.setImg(file);
+            Product product = productService.submitProduct(productDto, userid);
+            if (product !=null)
+            {
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            else
+            {
+                return new ResponseEntity<>("Barang yang dijual melebihi 4", HttpStatus.BAD_REQUEST);
+            }
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
     @GetMapping("display-all")
