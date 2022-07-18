@@ -2,6 +2,7 @@ package Final.Project.Binar.Final.Project.Binar.Controller;
 
 import Final.Project.Binar.Final.Project.Binar.Dto.TransactionDto;
 import Final.Project.Binar.Final.Project.Binar.Entity.Product;
+import Final.Project.Binar.Final.Project.Binar.Entity.Transaction;
 import Final.Project.Binar.Final.Project.Binar.Entity.User;
 import Final.Project.Binar.Final.Project.Binar.Repository.TransactionRepository;
 import Final.Project.Binar.Final.Project.Binar.Repository.UserRepository;
@@ -53,43 +54,49 @@ public class TransactionController
         return new ResponseEntity<>(transactionService.display_TransactionByIdProduct(idProduct), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("display/user/{idUser}")
-    public ResponseEntity<?> displayBySeller(@PathVariable("idUser") long idUser)
+    @GetMapping("display/buyer/{idUser}")
+    public ResponseEntity<?> displayByBuyer(@PathVariable("idUser") long idUser)
     {
         return new ResponseEntity<>(transactionService.display_TransactionByUserId(idUser), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("display/seller/{idSeller}")
+    public ResponseEntity<?> displayBySeller(@PathVariable("idSeller") long idSeller)
+    {
+        return new ResponseEntity<>(transactionService.display_TransactionBySellerId(idSeller), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("{idTransaksi}/diterima")
     public ResponseEntity<?> diterima(@PathVariable("idTransaksi") long idTransaksi) throws IOException
     {
-//        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
-//        Product buyer = transactionRepository.findById(userToken.getUserId());
-//
-//        if (userToken.getUserId() == seller.getUserId().getUserId())
-//        {
+        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
+        Transaction seller = transactionRepository.findByIdTransaksi(idTransaksi);
+
+        if (userToken.getUserId() == seller.getUserPenjual().getUserId())
+        {
             transactionService.statusDiterima(idTransaksi);
             return new ResponseEntity<>("penawaran diterima",HttpStatus.ACCEPTED);
-//        }
-//        else
-//        {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
     @PutMapping("{idTransaksi}/ditolak")
     public ResponseEntity<?> ditolak(@PathVariable("idTransaksi") long idTransaksi) throws IOException
     {
-//        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
-//        Product seller = productRepository.findById(Id);
-//
-//        if (userToken.getUserId() == seller.getUserId().getUserId())
-//        {
+        User userToken = userRepository.findByEmail(authentication().getPrincipal().toString());
+        Transaction seller = transactionRepository.findByIdTransaksi(idTransaksi);
+
+        if (userToken.getUserId() == seller.getUserPenjual().getUserId())
+        {
             transactionService.statusDitolak(idTransaksi);
             return new ResponseEntity<>("penawaran telah ditolak",HttpStatus.ACCEPTED);
-//        }
-//        else
-//        {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
+        }
+        else
+        {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 }

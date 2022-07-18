@@ -1,6 +1,7 @@
 package Final.Project.Binar.Final.Project.Binar.Dto;
 
 
+import Final.Project.Binar.Final.Project.Binar.Entity.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +20,7 @@ public class TransactionDto
 
     private long idProduct;
     private BigDecimal price;
+    private User userPenjual;
 
     private String status; //ditawar-diterima-ditolak
 

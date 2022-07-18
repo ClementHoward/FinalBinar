@@ -45,8 +45,10 @@ public class TransactionService
         transaction.setIdProduct(product);
         transaction.setStatus("ditawar");
         transaction.setPrice(product.getPrice());
+        transaction.setUserPenjual(product.getUserId());
 
         transaction.setTawar(transactionDto.getTawar());
+
         notif.setIdProduct(product);
         notif.setProductName(product.getProductName());
         notif.setUserPenjual(product.getUserId());
@@ -72,6 +74,11 @@ public class TransactionService
         return vw_transactionRepository.findByUserId(userId);
     }
 
+    public List<Vw_Transaction> display_TransactionBySellerId(long sellerId)
+    {
+        return vw_transactionRepository.findByUserPenjual(sellerId);
+    }
+
     public void statusDiterima(long Id) throws IOException
     {
         Transaction transaction = transactionRepository.findByIdTransaksi(Id);
@@ -82,9 +89,10 @@ public class TransactionService
         product.setStatus("diproses");
         transaction.setStatus("diterima");
         transaction.setPrice(transaction.getPrice());
-        Notification notification = notificationRepository.findByIdProduct(Id);
-        notification.setStatusTransaksi("diterima");
-        notificationRepository.save(notification);
+
+//        Notification notification = notificationRepository.findByIdProduct(Id);
+//        notification.setStatusTransaksi("diterima");
+//        notificationRepository.save(notification);
 
         transactionRepository.save(transaction);
     }

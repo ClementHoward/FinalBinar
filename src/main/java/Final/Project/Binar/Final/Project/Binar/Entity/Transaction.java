@@ -3,6 +3,7 @@ package Final.Project.Binar.Final.Project.Binar.Entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,17 +25,23 @@ public class Transaction
     private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idseller")
+    private User userPenjual;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_product")
     private Product idProduct;
     @Column(name = "price")
     private BigDecimal price;
+
+
 
     @Column(name = "status") //ditawar,diterima,ditolak
     private String status;
 
     @Column(name = "tawar")
     private BigDecimal tawar;
-    @CreationTimestamp
+    @UpdateTimestamp
     @Column(name = "last_updated")
     private Date updated;
 }

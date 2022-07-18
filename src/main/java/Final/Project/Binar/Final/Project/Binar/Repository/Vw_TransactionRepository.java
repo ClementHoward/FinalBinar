@@ -16,4 +16,5 @@ public interface Vw_TransactionRepository extends JpaRepository<Vw_Transaction, 
     Vw_Transaction findByIdTransaksi(long Id);
     List<Vw_Transaction> findByIdProduct(long idProduct);
     List<Vw_Transaction> findByUserId(long userId);
+    List<Vw_Transaction> findByUserPenjual(long userPenjual);
 }

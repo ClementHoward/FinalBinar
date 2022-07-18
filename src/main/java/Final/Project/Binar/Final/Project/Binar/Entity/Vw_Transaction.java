@@ -4,10 +4,7 @@ package Final.Project.Binar.Final.Project.Binar.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -32,4 +29,6 @@ public class Vw_Transaction
     private BigDecimal tawar;
     @Column(name = "last_updated")
     private Date updated;
+    @Column(name = "idseller")
+    private long userPenjual;
 }

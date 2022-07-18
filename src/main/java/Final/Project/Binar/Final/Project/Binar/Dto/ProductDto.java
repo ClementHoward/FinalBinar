@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -24,4 +25,5 @@ public class ProductDto
     private String username;
     private long userid;
     private String provinsi;
+    private Date updated;
 }

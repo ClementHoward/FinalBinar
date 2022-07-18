@@ -2,9 +2,11 @@ package Final.Project.Binar.Final.Project.Binar.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -45,4 +47,7 @@ public class Product
     private String description;
     @Lob
     private byte[] img;
+    @UpdateTimestamp
+    @Column(name = "last_updated")
+    private Date updated;
 }
