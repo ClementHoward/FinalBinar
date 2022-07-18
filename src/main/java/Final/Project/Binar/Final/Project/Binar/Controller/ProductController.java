@@ -66,6 +66,12 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("seller/{idSeller}")
+    public ResponseEntity<?> getProductBySeller(@PathVariable("idSeller") long Id)
+    {
+        return new ResponseEntity<>(productService.display_ProductBySeller(Id), HttpStatus.ACCEPTED);
+    }
+
     @PutMapping("update/{idProduct}")
     public ResponseEntity<?> update_Product(@PathVariable("idProduct") long Id, ProductDto productDto, @RequestParam("img") MultipartFile file) throws IOException
     {

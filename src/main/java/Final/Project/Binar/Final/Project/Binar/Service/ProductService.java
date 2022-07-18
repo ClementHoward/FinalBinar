@@ -74,6 +74,11 @@ public class ProductService
         return vw_productRepository.findByIdProduct(Id);
     }
 
+    public List<Vw_Product> display_ProductBySeller(long Id)
+    {
+        return vw_productRepository.findByUserId(Id);
+    }
+
     public void update_Product(long Id,ProductDto productDto) throws IOException
     {
 

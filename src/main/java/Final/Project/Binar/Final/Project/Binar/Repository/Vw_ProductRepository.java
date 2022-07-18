@@ -1,5 +1,6 @@
 package Final.Project.Binar.Final.Project.Binar.Repository;
 
+import Final.Project.Binar.Final.Project.Binar.Entity.Product;
 import Final.Project.Binar.Final.Project.Binar.Entity.Vw_Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,5 @@ public interface Vw_ProductRepository extends JpaRepository<Vw_Product, Long>
     List<Vw_Product> findAll();
     Vw_Product findByIdProduct (long idProduct);
     List<Vw_Product> findByCategory(long category);
+    List<Vw_Product> findByUserId(long userId);
 }
