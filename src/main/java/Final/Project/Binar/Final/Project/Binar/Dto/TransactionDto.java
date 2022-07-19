@@ -26,6 +26,7 @@ public class TransactionDto
     private long idProduct;
     private BigDecimal price;
     private MultipartFile imgproduk;
+    private String productName;
 
     private String status; //ditawar-diterima-ditolak
 

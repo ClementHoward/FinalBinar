@@ -34,6 +34,8 @@ public class Vw_Transaction
     private BigDecimal price;
     @Column(name = "imgproduk")
     private byte[] imgproduk;
+    @Column(name = "namaproduct")
+    private String productName;
 
     @Column(name = "status")
     private String status;

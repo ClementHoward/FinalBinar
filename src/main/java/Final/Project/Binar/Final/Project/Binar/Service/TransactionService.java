@@ -49,6 +49,7 @@ public class TransactionService
         transaction.setIdProduct(product);
         transaction.setPrice(product.getPrice());
         transaction.setImgproduk(product.getImg());
+        transaction.setProductName(product.getProductName());
 
         transaction.setStatus("ditawar");
         transaction.setTawar(transactionDto.getTawar());
