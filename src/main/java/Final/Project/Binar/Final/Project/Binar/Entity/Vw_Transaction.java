@@ -22,11 +22,19 @@ public class Vw_Transaction
     private long userId;
     @Column(name = "imgbuyer")
     private byte[] imgbuyer;
+    @Column(name = "buyerName")
+    private String buyerName;
+    @Column(name = "nopeBuyer")
+    private long nopeBuyer;
+
 
     @Column(name = "idseller")
     private long userPenjual;
     @Column(name = "imgseller")
     private byte[] imgseller;
+    @Column(name = "sellerName")
+    private String sellerName;
+
 
     @Column(name = "id_product")
     private long idProduct;

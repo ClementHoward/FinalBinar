@@ -19,14 +19,20 @@ public class TransactionDto
 
     private long userId;
     private MultipartFile imgbuyer;
+    private String buyerName; //new
+    private long nopeBuyer; //new
+
 
     private User userPenjual;
     private MultipartFile imgseller;
+    private String sellerName; //new
+
 
     private long idProduct;
     private BigDecimal price;
     private MultipartFile imgproduk;
     private String productName;
+
 
     private String status; //ditawar-diterima-ditolak
 

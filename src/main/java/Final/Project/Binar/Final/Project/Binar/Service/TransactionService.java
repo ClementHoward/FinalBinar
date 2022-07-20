@@ -42,14 +42,20 @@ public class TransactionService
 
         transaction.setUserId(buyer);
         transaction.setImgbuyer(buyer.getImg());
+        transaction.setBuyerName(buyer.getUsername());
+        transaction.setNopeBuyer(buyer.getNotelepon());
+
 
         transaction.setUserPenjual(product.getUserId());
         transaction.setImgseller(product.getImgpenjual());
+        transaction.setSellerName(product.getUsername());
+
 
         transaction.setIdProduct(product);
         transaction.setPrice(product.getPrice());
         transaction.setImgproduk(product.getImg());
         transaction.setProductName(product.getProductName());
+
 
         transaction.setStatus("ditawar");
         transaction.setTawar(transactionDto.getTawar());

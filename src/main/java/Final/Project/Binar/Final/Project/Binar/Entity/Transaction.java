@@ -25,6 +25,10 @@ public class Transaction
     private User userId;
     @Column(name = "imgbuyer")
     private byte[] imgbuyer;
+    @Column(name = "buyerName")
+    private String buyerName;
+    @Column(name = "nopeBuyer")
+    private long nopeBuyer;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -32,7 +36,8 @@ public class Transaction
     private User userPenjual;
     @Column(name = "imgseller")
     private byte[] imgseller;
-
+    @Column(name = "sellerName")
+    private String sellerName;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_product")
