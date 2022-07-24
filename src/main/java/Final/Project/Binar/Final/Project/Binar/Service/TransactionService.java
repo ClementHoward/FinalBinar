@@ -97,7 +97,7 @@ public class TransactionService
 
         transactionRepository.diterima("ditolak",transaction.getIdProduct().getIdProduct());
         
-        product.setStatus("diproses");
+        product.setStatus("terjual");
         transaction.setStatus("diterima");
         transaction.setPrice(transaction.getPrice());
 
